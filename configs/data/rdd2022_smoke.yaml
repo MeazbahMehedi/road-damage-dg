@@ -1,0 +1,11 @@
+# Small official sample only. Keep this raw tree separate from the full release.
+raw: data/raw/rdd2022_smoke
+output: data/processed/rdd2022_block_smoke
+logs: experiments/logs
+dataset_release: "https://doi.org/10.6084/m9.figshare.21431547.v1"
+domains: [China_Drone]
+seed: 42
+block_size: 2
+ratios: {train: 0.70, val: 0.15, test: 0.15}
+groups: null
+unknown: skip

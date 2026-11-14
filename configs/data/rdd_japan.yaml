@@ -1,0 +1,11 @@
+raw: data/raw/rdd2022
+output: data/processed/rdd_yolo_japan
+logs: experiments/logs
+dataset_release: "https://doi.org/10.6084/m9.figshare.21431547.v1"
+domains: [Japan]
+seed: 42
+# Keep adjacent sorted filenames together within each capture domain.
+block_size: 100
+ratios: {train: 0.70, val: 0.15, test: 0.15}
+groups: null
+unknown: skip

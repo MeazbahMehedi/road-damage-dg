@@ -1,0 +1,14 @@
+# Paths resolve from repository root (override with --root).
+raw: data/raw/rdd2022
+output: data/processed/rdd_yolo
+logs: experiments/logs
+dataset_release: "https://doi.org/10.6084/m9.figshare.21431547.v1"
+domains: [Japan, India, Czech, Norway, United_States, China_Drone, China_MotorBike]
+seed: 42
+# Keep adjacent sorted filenames together within each capture domain.
+block_size: 100
+ratios: {train: 0.70, val: 0.15, test: 0.15}
+# CSV with source_image,group columns, or null for image-level splitting.
+groups: null
+# Ignore non-benchmark objects and count each excluded label in the audit.
+unknown: skip

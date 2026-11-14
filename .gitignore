@@ -1,0 +1,17 @@
+/data/
+/runs/
+/experiments/logs/*
+/experiments/results/*
+/experiments/figures/*
+!/experiments/**/.gitkeep
+/deployment/models/*
+!/deployment/models/.gitkeep
+.venv/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+*.pt
+*.pth
+*.onnx
+*.tflite
+.ipynb_checkpoints/
