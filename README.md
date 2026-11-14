@@ -2,11 +2,11 @@
 
 ![Research pipeline: prepare road images, train YOLO baselines, evaluate across regions and weather, adapt with limited labels, and deploy with ONNX and INT8.](docs/assets/research-pipeline.gif)
 
-[Static diagram](docs/assets/research-pipeline.png) · [Run C1](#install-and-test) · [Research protocol](docs/experiment_plan.md)
+[Development status](#coding-roadmap) · [Run C1](#install-and-test) · [Research protocol](docs/experiment_plan.md) · [Static pipeline diagram](docs/assets/research-pipeline.png)
 
-A master's research project studying how road damage detectors hold up on unfamiliar roads, how much labeled data it takes to recover accuracy, and what the resulting models cost to run on a CPU.
+This project evaluates how road damage detectors hold up on unfamiliar roads, how much labeled data it takes to recover accuracy, and what the resulting models cost to run on a CPU.
 
-**Current status:** C1 is implemented and verified on a small official RDD2022 sample. Full-release checks are pending. C2–C6 describe planned work.
+**Current phase: C1 data preparation.** The pipeline passed tests on an official RDD2022 sample. Full-release validation is the next step, followed by C2 baseline training.
 
 ## What the completed project will deliver
 
@@ -22,10 +22,12 @@ The benchmark will report mAP@0.5, mAP@0.5:0.95, and per-class AP for longitudin
 
 ## Coding roadmap
 
+![Development tracker showing C1 data preparation as current, C2 baseline as next, and phases C3 through C6 as planned.](docs/assets/development-phases.gif)
+
 | Phase | Scope | Status |
 | --- | --- | --- |
-| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | Sample verified · full release pending |
-| C2 | Train and evaluate config-driven YOLO baselines | Planned |
+| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | **Current** · sample verified, full release pending |
+| C2 | Train and evaluate config-driven YOLO baselines | **Next**, after C1 validation |
 | C3 | Extract frames, review privacy, pre-label, and split local data by route | Planned |
 | C4 | Measure cross-region and cross-condition shifts and analyze errors | Planned |
 | C5 | Compare adaptation methods at fixed label budgets | Planned |
