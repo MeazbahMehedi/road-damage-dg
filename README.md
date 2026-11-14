@@ -1,6 +1,35 @@
 # Robust and Efficient Road Damage Detection Under Domain Shift
 
-This master's project will measure how road damage detectors transfer across regions and conditions, how cheaply they can adapt, and what accuracy they retain on edge hardware. This repository currently covers C1, foundation and RDD2022 preparation. C1 maps to research Phase 0 and the data portion of research Phase 2. Training, adaptation and deployment are reserved for later phases.
+![Research pipeline: prepare road images, train YOLO baselines, evaluate across regions and weather, adapt with limited labels, and deploy with ONNX and INT8.](docs/assets/research-pipeline.gif)
+
+[Static diagram](docs/assets/research-pipeline.png) · [Run C1](#install-and-test) · [Research protocol](docs/experiment_plan.md)
+
+A master's research project studying how road damage detectors hold up on unfamiliar roads, how much labeled data it takes to recover accuracy, and what the resulting models cost to run on a CPU.
+
+**Current status:** C1 is implemented and verified on a small official RDD2022 sample. Full-release checks are pending. C2–C6 describe planned work.
+
+## What the completed project will deliver
+
+| Deliverable | What it will show |
+| --- | --- |
+| Reproducible YOLO baselines | Dataset manifests, experiment configs, checkpoints, and detection metrics across seeds. |
+| Local evaluation dataset | Phone imagery with reviewed annotations, a data card, and route-based adaptation, validation, and test splits. |
+| Domain shift benchmark | A train-country × test-country mAP matrix, condition tests for night, blur, and other corruptions, and a gallery of misses, false alarms, and localization errors. |
+| Adaptation study | Compare stronger augmentation, few-shot fine-tuning, pseudo-labeling, and optional test-time adaptation under defined label and compute budgets. |
+| CPU deployment benchmark | ONNX FP32 and INT8 models, accuracy and latency on fixed input sizes, and a video demo that draws detections and records timestamps. |
+
+The benchmark will report mAP@0.5, mAP@0.5:0.95, and per-class AP for longitudinal cracks (D00), transverse cracks (D10), alligator cracks (D20), and potholes (D40). The deployment study will report median and 95th-percentile latency alongside accuracy. These are planned measurements.
+
+## Coding roadmap
+
+| Phase | Scope | Status |
+| --- | --- | --- |
+| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | Sample verified · full release pending |
+| C2 | Train and evaluate config-driven YOLO baselines | Planned |
+| C3 | Extract frames, review privacy, pre-label, and split local data by route | Planned |
+| C4 | Measure cross-region and cross-condition shifts and analyze errors | Planned |
+| C5 | Compare adaptation methods at fixed label budgets | Planned |
+| C6 | Export, quantize, benchmark on CPU, and release a demo | Planned |
 
 ## Install and test
 
