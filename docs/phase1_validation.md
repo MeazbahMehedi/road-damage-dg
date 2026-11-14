@@ -20,7 +20,7 @@ These checks establish sample compatibility and repeatability. They do not estab
 
 The current smoke config uses two-image filename blocks. It kept all three blocks intact and yielded 2 train, 2 validation and 2 test images. The seed and fixed groups determine the split, so the small sample cannot match the target ratios. The 12 retained boxes had the same class counts as before. The PowerShell and Git Bash runs produced identical manifests, statistics and figures. The preview CLI drew and labeled a D10 box on the first image, and the rendered PNG was opened for inspection.
 
-Full-release validation is pending. Review all four class counts, per-country box counts and example overlays once the complete release is available.
+Validation on the five selected RDD2022 countries is pending. Review all four class counts, per-country box counts and example overlays once the selected official archives are available.
 
 ## Verification of the supplied C1 ZIP
 

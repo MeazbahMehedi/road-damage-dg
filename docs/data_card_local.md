@@ -1,3 +1,3 @@
-# Local dataset card
+# Bangladesh local dataset card
 
-Reserved for the local collection phase. Phase 1 uses public RDD2022 only; no local dataset has been collected or evaluated.
+Bangladesh is the planned local target domain. C3 will document collection, privacy review, annotations, and how routes are assigned to the adaptation, validation, and test splits. Collection and evaluation are pending.

@@ -6,14 +6,14 @@
 
 This project evaluates how road damage detectors hold up on unfamiliar roads, how much labeled data it takes to recover accuracy, and what the resulting models cost to run on a CPU.
 
-**Current phase: C1 data preparation.** The pipeline passed tests on an official RDD2022 sample. Full-release validation is the next step, followed by C2 baseline training.
+**Current phase: C1 data preparation.** The pipeline passed tests on an official RDD2022 sample. Validation on the five selected RDD2022 countries is the next step, followed by C2 baseline training.
 
 ## What the completed project will deliver
 
 | Deliverable | What it will show |
 | --- | --- |
 | Reproducible YOLO baselines | Dataset manifests, experiment configs, checkpoints, and detection metrics across seeds. |
-| Local evaluation dataset | Phone imagery with reviewed annotations, a data card, and route-based adaptation, validation, and test splits. |
+| Bangladesh evaluation dataset | Local phone imagery with reviewed annotations, a data card, and route-based adaptation, validation, and test splits. |
 | Domain shift benchmark | A train-country × test-country mAP matrix, condition tests for night, blur, and other corruptions, and a gallery of misses, false alarms, and localization errors. |
 | Adaptation study | Compare stronger augmentation, few-shot fine-tuning, pseudo-labeling, and optional test-time adaptation under defined label and compute budgets. |
 | CPU deployment benchmark | ONNX FP32 and INT8 models, accuracy and latency on fixed input sizes, and a video demo that draws detections and records timestamps. |
@@ -26,9 +26,9 @@ The benchmark will report mAP@0.5, mAP@0.5:0.95, and per-class AP for longitudin
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | **Current** · sample verified, full release pending |
+| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | **Current** · sample verified, five-country validation pending |
 | C2 | Train and evaluate config-driven YOLO baselines | **Next**, after C1 validation |
-| C3 | Extract frames, review privacy, pre-label, and split local data by route | Planned |
+| C3 | Extract frames, review privacy, pre-label, and split Bangladesh data by route | Planned |
 | C4 | Measure cross-region and cross-condition shifts and analyze errors | Planned |
 | C5 | Compare adaptation methods at fixed label budgets | Planned |
 | C6 | Export, quantize, benchmark on CPU, and release a demo | Planned |
@@ -47,7 +47,9 @@ On Linux/macOS, use `python3.12 -m venv .venv` and replace the interpreter above
 
 ## Prepare RDD2022
 
-1. Obtain the [official Figshare v1 archive](https://doi.org/10.6084/m9.figshare.21431547.v1) (about 13.3 GB; MD5 `b62bd51d2ffcfaa76c60f234f0cc2bb3`). The outer ZIP contains country ZIPs; extract the relevant inner archives as well. [Publisher download links and label definitions](https://github.com/sekilab/RoadDamageDetector#dataset) are also available. Allow disk space for both the extracted images and a processed copy. The dataset is [CC BY 4.0](https://api.figshare.com/v2/articles/21431547); cite Arya et al., [RDD2022](https://doi.org/10.1002/gdj3.260). The repository's code license does not cover the dataset.
+The default benchmark uses Japan, India, Norway, the United States, and China (Drone and MotorBike). The Czech Republic is outside this benchmark. Bangladesh is the planned local target for C3 and will use separately collected and labeled images.
+
+1. Obtain the [official Figshare v1 archive](https://doi.org/10.6084/m9.figshare.21431547.v1) (about 13.3 GB; MD5 `b62bd51d2ffcfaa76c60f234f0cc2bb3`). The outer ZIP contains country ZIPs; extract the six selected domain archives listed in the config. [Publisher download links and label definitions](https://github.com/sekilab/RoadDamageDetector#dataset) are also available. Allow disk space for both the extracted images and a processed copy. The dataset is [CC BY 4.0](https://api.figshare.com/v2/articles/21431547); cite Arya et al., [RDD2022](https://doi.org/10.1002/gdj3.260). The repository's code license does not cover the dataset.
 2. Place the extracted directories under `data/raw/rdd2022`, keeping the original names and the paths `<domain>/train/images/` and `<domain>/train/annotations/xmls/`. An extra enclosing archive directory is fine. Official challenge test images are unlabeled and ignored.
 3. Run preparation from the repository root:
 

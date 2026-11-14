@@ -3,7 +3,8 @@ raw: data/raw/rdd2022
 output: data/processed/rdd_yolo
 logs: experiments/logs
 dataset_release: "https://doi.org/10.6084/m9.figshare.21431547.v1"
-domains: [Japan, India, Czech, Norway, United_States, China_Drone, China_MotorBike]
+# Public benchmark scope. Bangladesh will use a separate local dataset.
+domains: [Japan, India, Norway, United_States, China_Drone, China_MotorBike]
 seed: 42
 # Keep adjacent sorted filenames together within each capture domain.
 block_size: 100
