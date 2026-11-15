@@ -6,7 +6,7 @@
 
 This project evaluates how road damage detectors hold up on unfamiliar roads, how much labeled data it takes to recover accuracy, and what the resulting models cost to run on a CPU.
 
-**Current phase: C1 data preparation.** The pipeline passed tests on an official RDD2022 sample. Validation on the five selected RDD2022 countries is the next step, followed by C2 baseline training.
+**Current phase: C2 baseline tooling and Bangladesh data readiness.** The baseline will train on Bangladesh and score held-out routes. Japan and the other selected RDD2022 datasets are available as sources for later comparisons. See the [C2 baseline guide](docs/c2_baseline.md).
 
 ## What the completed project will deliver
 
@@ -22,13 +22,13 @@ The benchmark will report mAP@0.5, mAP@0.5:0.95, and per-class AP for longitudin
 
 ## Coding roadmap
 
-![Development tracker showing C1 data preparation as current, C2 baseline as next, and phases C3 through C6 as planned.](docs/assets/development-phases.gif)
+![Development tracker showing the RDD2022 sample check, current C2 baseline tooling, and the remaining phases.](docs/assets/development-phases.gif)
 
 | Phase | Scope | Status |
 | --- | --- | --- |
-| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | **Current** · sample verified, five-country validation pending |
-| C2 | Train and evaluate config-driven YOLO baselines | **Next**, after C1 validation |
-| C3 | Extract frames, review privacy, pre-label, and split Bangladesh data by route | Planned |
+| C1 | Convert VOC annotations, create fixed splits, and audit the dataset | RDD2022 samples verified · full public benchmark audit pending |
+| C2 | Train and evaluate a Bangladesh baseline across route folds | **Current** · CPU smoke passed · real data pending |
+| C3 | Collect and label Bangladesh data, then review privacy and route metadata | Collection protocol ready · needed for real C2 runs |
 | C4 | Measure cross-region and cross-condition shifts and analyze errors | Planned |
 | C5 | Compare adaptation methods at fixed label budgets | Planned |
 | C6 | Export, quantize, benchmark on CPU, and release a demo | Planned |
@@ -47,7 +47,7 @@ On Linux/macOS, use `python3.12 -m venv .venv` and replace the interpreter above
 
 ## Prepare RDD2022
 
-The default benchmark uses Japan, India, Norway, the United States, and China (Drone and MotorBike). The Czech Republic is outside this benchmark. Bangladesh is the planned local target for C3 and will use separately collected and labeled images.
+The default benchmark uses Japan, India, Norway, the United States, and China (Drone and MotorBike). The Czech Republic is outside this benchmark. Bangladesh is the planned C2 baseline domain and will use separately collected and labeled images. See the [collection protocol](docs/bangladesh_collection.md).
 
 1. Obtain the [official Figshare v1 archive](https://doi.org/10.6084/m9.figshare.21431547.v1) (about 13.3 GB; MD5 `b62bd51d2ffcfaa76c60f234f0cc2bb3`). The outer ZIP contains country ZIPs; extract the six selected domain archives listed in the config. [Publisher download links and label definitions](https://github.com/sekilab/RoadDamageDetector#dataset) are also available. Allow disk space for both the extracted images and a processed copy. The dataset is [CC BY 4.0](https://api.figshare.com/v2/articles/21431547); cite Arya et al., [RDD2022](https://doi.org/10.1002/gdj3.260). The repository's code license does not cover the dataset.
 2. Place the extracted directories under `data/raw/rdd2022`, keeping the original names and the paths `<domain>/train/images/` and `<domain>/train/annotations/xmls/`. An extra enclosing archive directory is fine. Official challenge test images are unlabeled and ignored.

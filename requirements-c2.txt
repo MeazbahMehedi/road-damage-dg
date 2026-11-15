@@ -1,0 +1,3 @@
+-r requirements.txt
+ultralytics==8.3.160
+# Install the matching CPU or CUDA build of torch and torchvision first.

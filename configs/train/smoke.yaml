@@ -1,0 +1,10 @@
+model: yolov8n.pt
+train_domain: China
+data_root: data/processed/rdd2022_smoke
+imgsz: 320
+epochs: 1
+batch: 2
+workers: 0
+device: cpu
+fold: null
+wandb: false

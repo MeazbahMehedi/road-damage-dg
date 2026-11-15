@@ -31,3 +31,17 @@ The workspace also contains a separate source archive, `road-damage-dg-step1-2.z
 - A CSV calculated directly from the ZIP converter's YOLO labels is available locally at `data/c1-archive-verification/sample_stats.csv`. All six images were 512 × 512 and had boxes. The sample median box area was 2.9118% of image area.
 - With seed 42 and group size 2, the ZIP splitter assigned 4 train, 2 val and 0 test images. A repeat produced identical split lists. The active repository's splitter assigns a group to each split when there are exactly three independent groups.
 - The full-data command in the active checkout failed during discovery with `China_Drone: expected one labeled train tree ... found 0`. The raw directory was empty. The official S3 archive endpoints returned HTTP 403 from this machine. The Figshare range probe received 393,216 bytes in 18 seconds before timing out. Full-release counts and splits remain unavailable.
+
+## Japan public comparison audit
+
+The Japan preview used 12 official image/XML pairs from the Figshare v1 Japan archive. The subset was chosen from the smallest compressed images to make the transfer practical. It is a compatibility sample. The archive directory contained 10,506 paired training entries. The installed pipeline prepared all 12 downloaded pairs with seed 42 and two-image blocks for the preview. The real Japan config still uses 100-image blocks.
+
+| Split | Images | D00 | D10 | D20 | D40 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Train | 8 | 10 | 1 | 2 | 0 |
+| Validation | 2 | 2 | 1 | 0 | 0 |
+| Test | 2 | 1 | 2 | 0 | 0 |
+
+All 19 retained boxes matched the source XML classes and reconstructed pixel edges. Eight D44 boxes were excluded under the four-class protocol. There were zero dimension mismatches, clipped boxes, or exact duplicate images in this sample. All 12 overlays were opened for review. Two runs matched byte for byte on the split lists, manifest and statistics.
+
+Full Japan C1 validation remains pending. The publisher's direct endpoint returned HTTP 403 during prior checks. A fresh Figshare byte-range probe transferred about 23 KB/s before timing out. The default Japan run found no extracted Japan tree. Complete the Japan audit and audit the other selected public domains before C4. Real C2 training is governed by the separate Bangladesh readiness gate.

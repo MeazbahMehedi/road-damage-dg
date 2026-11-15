@@ -1,0 +1,14 @@
+model: yolov8s.pt
+train_domain: Bangladesh
+data_root: data/processed/local_yolo
+project_dir: runs
+imgsz: 640
+epochs: 100
+batch: 16
+patience: 30
+seed: 1
+workers: 2
+device: auto
+fold: 0
+n_folds: 5
+wandb: false
